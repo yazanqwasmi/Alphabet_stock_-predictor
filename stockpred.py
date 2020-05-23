@@ -7,18 +7,17 @@ Original file is located at
     https://colab.research.google.com/drive/1WpY-KKKYwJgUt7ivctYPW6qpCCJ45CJk
 """
 
-# Recurrent Neural Network
-
-
-
+# This program intakes historical Alphabet Inc stock proses and pridicts where it will go in the future
+# Feb 20
+# @yazan
 # Part 1 - Data Preprocessing
 
-# Importing the libraries
+# Importing all the libraries
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-# Importing the training set
+# Importing the training set data
 dataset_train = pd.read_csv('Google_Stock_Price_Train.csv')
 training_set = dataset_train.iloc[:, 1:2].values
 
@@ -39,7 +38,7 @@ X_train, y_train = np.array(X_train), np.array(y_train)
 X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
 
 
-# Part 2 - Building the RNN
+# construction of the RNN
 
 # Importing the Keras libraries and packages
 from keras.models import Sequential
@@ -54,19 +53,19 @@ regressor = Sequential()
 regressor.add(LSTM(units = 50, return_sequences = True, input_shape = (X_train.shape[1], 1)))
 regressor.add(Dropout(0.2))
 
-# Adding a second LSTM layer and some Dropout regularisation
+# LSTM layer No2 + Dropout regularisation
 regressor.add(LSTM(units = 50, return_sequences = True))
 regressor.add(Dropout(0.2))
 
-# Adding a third LSTM layer and some Dropout regularisation
+# LSTM layer No3 + Dropout regularisation
 regressor.add(LSTM(units = 50, return_sequences = True))
 regressor.add(Dropout(0.2))
 
-# Adding a fourth LSTM layer and some Dropout regularisation
+# LSTM layer No4 + Dropout regularisation
 regressor.add(LSTM(units = 50))
 regressor.add(Dropout(0.2))
 
-# Adding the output layer
+# Adding output layer
 regressor.add(Dense(units = 1))
 
 # Compiling the RNN
@@ -102,14 +101,5 @@ plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Google Stock 
 plt.title('Google Stock Price Prediction')
 plt.xlabel('Time (in Days)')
 plt.ylabel('Google Stock Price (in $USD)')
-plt.legend()
-plt.show()
-
-# Visualising the results
-plt.plot(real_stock_price, color = 'red', label = 'Real Google Stock Price')
-plt.plot(predicted_stock_price, color = 'blue', label = 'Predicted Google Stock Price')
-plt.title('Google Stock Price Prediction')
-plt.xlabel('Time(in days)')
-plt.ylabel('Google Stock Price(in $USD)')
 plt.legend()
 plt.show()
