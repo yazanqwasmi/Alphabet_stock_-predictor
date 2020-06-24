@@ -7,7 +7,7 @@ Original file is located at
     https://colab.research.google.com/drive/1WpY-KKKYwJgUt7ivctYPW6qpCCJ45CJk
 """
 
-# This program intakes historical Alphabet Inc stock proses and pridicts where it will go in the future
+# This program intakes historical Alphabet Inc stock prices and pridicts where it will go in the future
 # Feb 20
 # @yazan
 # Part 1 - Data Preprocessing
